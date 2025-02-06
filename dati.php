@@ -1,0 +1,37 @@
+<?php
+    CREATE DATABASE IF NOT EXISTS Libreria;
+    USE Libreria;
+    
+    CREATE TABLE Autori (
+        NomeAutore VARCHAR(40) NOT NULL PRIMARY KEY,
+        AnnoN INT NOT NULL,
+        AnnoM INT,
+        Nazione VARCHAR(20) NOT NULL
+    );
+    
+    CREATE TABLE Romanzi (
+        CodiceR BIGINT NOT NULL PRIMARY KEY,
+        Titolo VARCHAR(40) NOT NULL,
+        NomeAutore VARCHAR(40),
+        Anno INT NOT NULL,
+        FOREIGN KEY (NomeAutore) REFERENCES Autori(NomeAutore)
+    );
+    
+    INSERT INTO Autori VALUES
+        ('Harper Lee', 1926, 2016, 'Stati Uniti'),
+        ('Irvine Welsh', 1958, NULL, 'Regno Unito'),
+        ('Nicola Yoon', 1972, NULL, 'Giamaica'),
+        ('Elena Ferrante', 1943, NULL, 'Italia'),
+        ('Truman Capote', 1924, 1984, 'Stati Uniti'),
+        ('John Green', 1977, NULL, 'Stati Uniti'),
+        ('Andre Aciman', 1951, NULL, 'Egitto');
+    
+    INSERT INTO Romanzi VALUES
+        (9788807881558, 'Il buio oltre la siepe', 'Harper Lee', 1996),
+        (9788882467647, 'Trainspotting', 'Irvine Welsh', 1996),
+        (9788820067946, 'Il sole è anche una stella', 'Nicola Yoon', 2019),
+        (9788866320326, 'L\'amica geniale', 'Elena Ferrante', 2011),
+        (9788811604686, 'Colazione da Tiffany', 'Truman Capote', 1959),
+        (9788817081566, 'Colpa delle stelle', 'John Green', 2015),
+        (9788823517578, 'Chiamami col tuo nome', 'Andre Aciman', 2017);
+?>
