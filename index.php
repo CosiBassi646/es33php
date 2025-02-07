@@ -11,21 +11,19 @@
   </head>
   <body>
     <h1 class="text-danger text-center">Visualizza i Romanzi di un'autore dal DATABASE</h1>
-    <div class="w-50 mx-auto my-auto">
+    <div class="w-25 mx-auto my-auto">
     <form action="./action.php">
         <?php
-            $query = mysqli_query($conn,"SELECT * FROM Autori");
-            echo"<select name=autori>";
-            while ($row = mysqli_fetch_array ($query))
-            {
-                $nome = $row["NomeAutore"];
-            echo "<option value=" . $row["NomeAutore"] . ">" . $nome . "</option>";
-            }
-            echo "</select><br>";
-            echo var_dump($nome);
+          $query = mysqli_query($conn, "SELECT * FROM Autori");
+          echo "<select name='autori' class='form-select'>"; // Aggiunto il nome tra apici singoli
+          while ($row = mysqli_fetch_array($query)) {
+              $nome = $row["NomeAutore"];
+              echo "<option value=\"$nome\">$nome</option>"; // valore tra virgolette
+          }
+          echo "</select>";
         ?>
-        <br>
-        <input type="submit" value="invia">
+      <br>
+      <button type="submit" class="btn btn-success">Invia</button>
     </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
