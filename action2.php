@@ -11,12 +11,14 @@
       include("connessione.php");
       $idLibro = isset($_GET['idLibro']) ? intval($_GET['idLibro']) : 0;
       $query = mysqli_query($conn, "SELECT Nomeautore, titolo, CodiceR FROM Romanzi WHERE CodiceR = $idLibro");
-      if($query != null){
-        while ($row = $query->fetch_assoc()) {
-          echo "<h6>Autore:</h6>"  . htmlspecialchars($row["Nomeautore"]) . "<h6>Titolo Libro:</h6>" . htmlspecialchars($row["titolo"]) . "<h6>ID Libro:</h6>" . htmlspecialchars($row["CodiceR"]) . "<br>";
+      if($query){
+        if(mysqli_num_rows($query) > 0){
+          while ($row = $query->fetch_assoc()) {
+            echo "<h6>Autore:</h6>"  . htmlspecialchars($row["Nomeautore"]) . "<h6>Titolo Libro:</h6>" . htmlspecialchars($row["titolo"]) . "<h6>ID Libro:</h6>" . htmlspecialchars($row["CodiceR"]) . "<br>";
+          }
+        }else{
+          echo "<h2>Nessuna corrispondenza</h2>";
         }
-      }else{
-          echo "nessuna corrispondenza per l'ID selezionata";
       }
     ?>
 
